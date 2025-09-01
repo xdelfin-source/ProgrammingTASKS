@@ -374,8 +374,8 @@ public class delfinTASK3 {
                 double leftSide3 = Math.sin(2 * radians);
                 double rightSide3 = 2 * sinTheta * cosTheta;
                 System.out.print("\nVerifying sin(2θ) = 2sinθcosθ\n");
-                System.out.printf("Left side:", leftSide3);
-                System.out.printf("Right side:", rightSide3);
+                System.out.printf("Left side: %.10f\n", leftSide3);
+                System.out.printf("Right side: %.10f\n", rightSide3);
                 if (Math.abs(leftSide3 - rightSide3) < tolerance) {
                     System.out.println("Identity holds true.");
                 } else {
