@@ -410,8 +410,8 @@ public class delfinTASK3 {
             double value = amplitude * Math.sin(2 * Math.PI * frequency * time + phaseShiftRadians);
             double period = 1.0 / frequency;
 
-            System.out.printf("\nInstantaneous value at t=%.2f s:\n", time, value);
-            System.out.println("The period of the wave is: \n" + period);
+            System.out.printf("\nInstantaneous value at t=%.2f s: %.4f\n", time, value);
+            System.out.printf("The period of the wave is: %.4f s\n", period);
 
             // Determine if it's a peak, trough, or zero-crossing
             // Use a small tolerance for floating-point comparison
@@ -439,4 +439,4 @@ public class delfinTASK3 {
             // It finds the time of the next peak by working with the argument of the sine function 2πft+ϕ). A sinusoidal wave reaches its peak when this argument is equal to pi over 2 plus any even multiple of pi
             //I would need to add new functions to create new methods for each type of wave. Each method would contain the specific mathematical formula for that wave type.
         }
-    }
+}
