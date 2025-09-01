@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -21,20 +20,20 @@ public class DelfinTASK2 {
             try {// I also used a try-catch block to "catch" any errors. Its basically a "plan B" of some sort because if an error occurs, instead of crashing, the program looks for another way to execute that code
                 int choice = scanner.nextInt();
                 if (choice == 1) {
-                    problem1TrigoFuncCal();
-
+                    trigonometricFunctionCalculator();
                 } else if (choice == 2) {
-                    problem2AngleQFC();
+                    angleQuadrantDetector();
                 } else if (choice == 3) {
-                    problem2AngleQFC();
+                    rightTriangleSolver();
                 } else if (choice == 4) {
-                    problem2AngleQFC();
+                    trigonometricIdentityVerifier();
                 } else if (choice == 5) {
-                    problem2AngleQFC();
+                    wavePropertiesAnalyzer();
                 } else if (choice == 6) {
-                    problem2AngleQFC();
                     running = false;
                     System.out.println("Bye!");
+                } else {
+                    System.out.println("Invalid choice. Please enter a valid number from 1 to 6.");
                 }
             } catch (InputMismatchException e) {// The program detects an illegal input, like a letter or character for example. since its on a loop, this will notify the user and then they can choose again.
                 System.out.println("\nInvalid input. Please enter a number");
@@ -44,7 +43,7 @@ public class DelfinTASK2 {
     }
 
     // problem 1
-    public static void problem1TrigoFuncCal() {
+    public static void trigonometricFunctionCalculator() {
         System.out.println("\n[Trigonometric Function Calculator]");
         System.out.println("\nPlease enter an angle in degrees: ");
         double degrees = scanner.nextDouble();
@@ -91,21 +90,21 @@ public class DelfinTASK2 {
     }
 
     // problem 2
-    public static void problem2AngleQFC() {
+    public static void angleQuadrantDetector() {
 
         System.out.println("\n[Angle Quadrant Detector]");
         System.out.println("\nEnter an angle in degrees: ");
         double degrees = scanner.nextDouble();
-//normalize the angle to be between 0 and 360
+        //normalize the angle to be between 0 and 360
         double normalizedAngle = degrees % 360;
         if (normalizedAngle < 0) {
             normalizedAngle += 360;
         }
-        System.out.printf("normalized angle is: %.2f*\n", normalizedAngle);
+        System.out.printf("normalized angle is: %.2f°%n", normalizedAngle);
 
         String quadrant;
         String sinSign, cosSign, tanSign;
-// this part determines the quadrant and the sign of each trigo. functions
+        // this part determines the quadrant and the sign of each trigo. functions
         // based on the "All Students Take Calculus"
         if (normalizedAngle > 0 && normalizedAngle < 90) {
             quadrant = "Quadrant I";
@@ -129,25 +128,25 @@ public class DelfinTASK2 {
             tanSign = "Negative";
         } else {
             if (normalizedAngle == 0 || normalizedAngle == 360) {
-                quadrant = "Postive X-axis";
+                quadrant = "Positive X-axis";
                 sinSign = "Zero";
-                cosSign = "Postive";
+                cosSign = "Positive";
                 tanSign = "Zero";
             } else if (normalizedAngle == 90) {
                 quadrant = "Positive Y-axis";
                 sinSign = "Positive";
                 cosSign = "Zero";
                 tanSign = "Undefined";
-            } else if (normalizedAngle != 180) { // normalizedAngle == 270)
-                quadrant = "Negative Y-axis";
-                sinSign = "Negative";
-                cosSign = "Zero";
-                tanSign = "Undefined";
-            } else {
+            } else if (normalizedAngle == 180) {
                 quadrant = "Negative X-axis";
                 sinSign = "Zero";
                 cosSign = "Negative";
                 tanSign = "Zero";
+            } else { // normalizedAngle == 270
+                quadrant = "Negative Y-axis";
+                sinSign = "Negative";
+                cosSign = "Zero";
+                tanSign = "Undefined";
             }
         }
         System.out.println("The angle is in the " + quadrant + ".");
@@ -161,7 +160,7 @@ public class DelfinTASK2 {
     }
 
     // problem 3 solves for the missing elements of a right triangle
-    public static void problem3RightTriangle() {
+    public static void rightTriangleSolver() {
         System.out.println("\n[Right Triangle Solver]");
         System.out.println("What element of a triangle do you know?");
         System.out.println("1. Two sides");
@@ -269,8 +268,8 @@ public class DelfinTASK2 {
         }
     }
 
-//problem 4 verifies commmon trigo. identities for a given angle
-    public static void problem4TrigoIdentityVerify() {
+    //problem 4 verifies commmon trigo. identities for a given angle
+    public static void trigonometricIdentityVerifier() {
         System.out.println("\n [Trigonometric Identity Verifier]");
         System.out.print("Enter an angle in degrees: ");
         double degrees = scanner.nextDouble();
@@ -282,13 +281,13 @@ public class DelfinTASK2 {
         double tanTheta = Math.tan(radians);
 // Identity 1: sin²θ + cos²θ = 1
         double leftSide1 = sinTheta * sinTheta + cosTheta * cosTheta;
-        System.out.printf("\nVerifying sin²θ + cos²θ = 1\n");
-        System.out.printf("Left side: %.10f\n", leftSide1);
-        System.out.printf("Right side: 1.0\n");
+        System.out.printf("\nVerifying sin²θ + cos²θ = 1%n");
+        System.out.printf("Left side: %.10f%n", leftSide1);
+        System.out.printf("Right side: 1.0%n");
         if (Math.abs(leftSide1 - 1.0) < tolerance) {
             System.out.println("Identity holds true.");
         } else {
-            System.out.printf("Identity does not hold. Difference: %.10f\n", Math.abs(leftSide1 - 1.0));
+            System.out.printf("Identity does not hold. Difference: %.10f%n", Math.abs(leftSide1 - 1.0));
         }
 
         // Identity 2: 1 + tan²θ = sec²θ
@@ -299,26 +298,26 @@ public class DelfinTASK2 {
             double secTheta = 1.0 / cosTheta;
             double leftSide2 = 1 + tanTheta * tanTheta;
             double rightSide2 = secTheta * secTheta;
-            System.out.printf("\nVerifying 1 + tan²θ = sec²θ\n");
-            System.out.printf("Left side: %.10f\n", leftSide2);
-            System.out.printf("Right side: %.10f\n", rightSide2);
+            System.out.printf("\nVerifying 1 + tan²θ = sec²θ%n");
+            System.out.printf("Left side: %.10f%n", leftSide2);
+            System.out.printf("Right side: %.10f%n", rightSide2);
             if (Math.abs(leftSide2 - rightSide2) < tolerance) {
                 System.out.println("Identity holds true.");
             } else {
-                System.out.printf("Identity does not hold. Difference: %.10f\n", Math.abs(leftSide2 - rightSide2));
+                System.out.printf("Identity does not hold. Difference: %.10f%n", Math.abs(leftSide2 - rightSide2));
             }
         }
 
         // Identity 3: sin(2θ) = 2sinθcosθ
         double leftSide3 = Math.sin(2 * radians);
         double rightSide3 = 2 * sinTheta * cosTheta;
-        System.out.printf("\nVerifying sin(2θ) = 2sinθcosθ\n");
-        System.out.printf("Left side: %.10f\n", leftSide3);
-        System.out.printf("Right side: %.10f\n", rightSide3);
+        System.out.printf("\nVerifying sin(2θ) = 2sinθcosθ%n");
+        System.out.printf("Left side: %.10f%n", leftSide3);
+        System.out.printf("Right side: %.10f%n", rightSide3);
         if (Math.abs(leftSide3 - rightSide3) < tolerance) {
             System.out.println("Identity holds true.");
         } else {
-            System.out.printf("Identity does not hold. Difference: %.10f\n", Math.abs(leftSide3 - rightSide3));
+            System.out.printf("Identity does not hold. Difference: %.10f%n", Math.abs(leftSide3 - rightSide3));
 
             //it is necessary to use tolerance when comparing floating-point because computers cant always represent decimal numbers with perfect accuracy.
             // the identity 2. 1 + tan²θ = sec²θ is the most susceptible to floating-point precision issues in the program
@@ -326,8 +325,8 @@ public class DelfinTASK2 {
         }
     }
 
-//problem 5
-    public static void problem5WaveProperties() {
+    //problem 5
+    public static void wavePropertiesAnalyzer() {
         System.out.println("\n [Wave Properties Analyzer]");
 
         System.out.print("Enter Amplitude (A): ");
@@ -345,7 +344,7 @@ public class DelfinTASK2 {
         double value = amplitude * Math.sin(2 * Math.PI * frequency * time + phaseShiftRadians);
         double period = 1.0 / frequency;
 
-        System.out.printf("\nInstantaneous value at t=%.2f s: %.4f\n", time, value);
+        System.out.printf("\nInstantaneous value at t=%.2f s: %.4f%n", time, value);
 
         // Determine if it's a peak, trough, or zero-crossing
         // Use a small tolerance for floating-point comparison
@@ -366,7 +365,7 @@ public class DelfinTASK2 {
         double nextPeakArgument = Math.ceil((argument - Math.PI / 2) / (2 * Math.PI)) * 2 * Math.PI + Math.PI / 2;
         double nextPeakTime = (nextPeakArgument - phaseShiftRadians) / (2 * Math.PI * frequency);
 
-        System.out.printf("The next peak will occur at approximately t=%.4f s\n", nextPeakTime);
+        System.out.printf("The next peak will occur at approximately t=%.4f s%n", nextPeakTime);
 
         // the program determines if the wave is at a peak or trough by comparing its instantaneous value to its amplitude
         // It finds the time of the next peak by working with the argument of the sine function 2πft+ϕ). A sinusoidal wave reaches its peak when this argument is equal to pi over 2 plus any even multiple of pi
